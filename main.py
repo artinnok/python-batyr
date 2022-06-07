@@ -1,6 +1,3 @@
-~/Desktop/evrone
-from typing import List
-
 from fastapi import FastAPI
 
 app = FastAPI()
