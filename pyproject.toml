@@ -2,7 +2,7 @@
 name = "python-batyr"
 version = "0.1.0"
 description = ""
-authors = ["Artem <artinnok@mail.ru>"]
+authors = ["Artem <artinnok@protonmail.com>"]
 
 [tool.poetry.dependencies]
 python = "3.9.13"
