@@ -5,4 +5,4 @@ app = FastAPI()
 
 @app.get("/health")
 def health() -> dict:
-    return {"status": "okay"}
+    return {"status": "ok"}
