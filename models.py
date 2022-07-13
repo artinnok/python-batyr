@@ -38,6 +38,9 @@ class Book(Model):
     year = IntegerField(verbose_name="год выпуска")
     author = ForeignKeyField(Person, verbose_name="автор", backref="books")
 
+    class Meta:
+        database = db
+
 
 if __name__ == "__main__":
     db.create_tables([Person, Book])
