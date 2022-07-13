@@ -24,6 +24,7 @@ class Person(Model):
     last_name = CharField(verbose_name="фамилия")
     age = IntegerField(verbose_name="возраст")
     is_ill = BooleanField(verbose_name="болен или нет")
+    eye = CharField(verbose_name="цвет глаз", default="")
 
     class Meta:
         database = db
