@@ -9,6 +9,10 @@ DB_URI = environment("DB_URI")
 
 
 def get_db():
+    """
+    Соединяется с базой данных
+    """
+
     db = PostgresqlDatabase(
         database=DB_NAME,
         dsn=DB_URI,
