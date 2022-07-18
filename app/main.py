@@ -1,7 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+from dependencies import get_db
 
 
-app = FastAPI()
+app = FastAPI(dependencies=[Depends(get_db)])
 
 
 @app.get("/health")

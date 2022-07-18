@@ -1,6 +1,6 @@
 from peewee import *
 
-from config import get_db
+from dependencies import get_db
 
 
 db = get_db()
