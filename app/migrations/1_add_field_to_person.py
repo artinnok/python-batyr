@@ -8,7 +8,7 @@ migrator = PostgresqlMigrator(db)
 
 if __name__ == "__main__":
     migrate(
-        migrator.add_column('person', 'eye', CharField(verbose_name="цвет глаз", default="")),
+        migrator.add_column('person_body', 'eye', CharField(verbose_name="цвет глаз", default="")),
     )
 
 
