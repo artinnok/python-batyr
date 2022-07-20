@@ -5,8 +5,8 @@ from environs import Env
 environment = Env()
 environment.read_env()
 
-DB_NAME = environment("DB_NAME")
-DB_URI = environment("DB_URI")
+DATABASE_NAME = environment("DATABASE_NAME")
+DATABASE_URI = environment("DATABASE_URL")
 
 
 def get_db():
@@ -15,8 +15,8 @@ def get_db():
     """
 
     db = PostgresqlDatabase(
-        database=DB_NAME,
-        dsn=DB_URI,
+        database=DATABASE_NAME,
+        dsn=DATABASE_URI,
     )
     db.connect()
 
