@@ -2,6 +2,9 @@ from typing import Optional
 from pydantic import BaseModel, validator
 
 
+MINIMUM_YEAR = 20
+
+
 class PersonRequestSchema(BaseModel):
     first_name: str
     last_name: str
@@ -11,8 +14,8 @@ class PersonRequestSchema(BaseModel):
 
     @validator("age")
     def not_too_young(cls, value: int):
-        if value <= 20:
-            raise ValueError("too-young")
+        if value < MINIMUM_YEAR:
+            raise ValueError("you are too young")
 
         return value
 
