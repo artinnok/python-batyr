@@ -1,6 +1,7 @@
 from peewee import *
 from environs import Env
 
+
 environment = Env()
 environment.read_env()
 
