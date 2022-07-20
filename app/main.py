@@ -3,7 +3,7 @@ from typing import List
 from fastapi import FastAPI, Depends, status
 
 from dependencies import get_db
-from schemas import PersonRequestSchema, PersonResponseSchema
+from schemas import PersonRequestSchema, PersonResponseSchema, PersonOptionalRequestSchema
 from models import Person
 
 
@@ -66,6 +66,24 @@ def delete_person(person_id: int):
     person.delete_instance()
 
     return {}
+
+
+@app.patch("/persons/{person_id}", response_model=PersonResponseSchema)
+def update_person(person_id: int, person_body: PersonOptionalRequestSchema):
+    """
+    обновление персоны
+    """
+
+    person = Person.get_by_id(person_id)
+
+    for key, value in person_body.dict(exclude_unset=True).items():
+        setattr(person, key, value)
+
+    person.save()
+
+    response = PersonResponseSchema.from_orm(person)
+
+    return response
 
 
 @app.get("/health")

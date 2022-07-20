@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel, validator
 
 
@@ -21,3 +22,18 @@ class PersonResponseSchema(PersonRequestSchema):
 
     class Config:
         orm_mode = True
+
+
+class PersonOptionalRequestSchema(BaseModel):
+    first_name: Optional[str]
+    last_name: Optional[str]
+    age: Optional[int]
+    is_ill: Optional[bool]
+    eye: Optional[str]
+
+    @validator("age")
+    def not_too_young(cls, value: int):
+        if value <= 20:
+            raise ValueError("too-young")
+
+        return value
