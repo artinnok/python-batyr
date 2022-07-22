@@ -6,7 +6,7 @@ environment = Env()
 environment.read_env()
 
 DATABASE_NAME = environment("DATABASE_NAME")
-DATABASE_URI = environment("DATABASE_URL")
+DATABASE_URL = environment("DATABASE_URL")
 
 
 def get_db():
@@ -16,7 +16,7 @@ def get_db():
 
     db = PostgresqlDatabase(
         database=DATABASE_NAME,
-        dsn=DATABASE_URI,
+        dsn=DATABASE_URL,
     )
     db.connect()
 
