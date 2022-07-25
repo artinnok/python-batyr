@@ -29,10 +29,10 @@ def get_db():
 
 def get_queue():
     """
-    Соединяется с брокером Redis
+    возвращает очередь задач
     """
 
-    redis = Redis.from_url(REDIS_URL)
+    redis = Redis.from_url(url=REDIS_URL)
     queue = Queue(connection=redis)
 
     return queue
