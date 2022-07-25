@@ -2,9 +2,10 @@ from typing import List
 
 from fastapi import FastAPI, Depends, status
 
-from dependencies import get_db
+from dependencies import get_db, get_queue
 from schemas import PersonRequestSchema, PersonResponseSchema, PersonOptionalRequestSchema
 from models import Person
+from tasks import hello_world
 
 
 app = FastAPI(dependencies=[Depends(get_db)])
@@ -84,6 +85,16 @@ def update_person(person_id: int, person_body: PersonOptionalRequestSchema):
     response = PersonResponseSchema.from_orm(person)
 
     return response
+
+
+@app.post("/run-task")
+def run_task():
+    """
+    запуск задачи
+    """
+
+    queue = get_queue()
+    queue.enqueue(hello_world)
 
 
 @app.get("/health")
