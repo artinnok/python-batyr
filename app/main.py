@@ -96,6 +96,8 @@ def run_task():
     queue = get_queue()
     queue.enqueue(hello_world)
 
+    return {}
+
 
 @app.get("/health")
 def health() -> dict:
