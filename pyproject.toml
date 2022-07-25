@@ -13,6 +13,7 @@ pytest = "^7.1.2"
 environs = "^9.5.0"
 psycopg2-binary = "^2.9.3"
 requests = "^2.28.1"
+rq = "^1.10.1"
 
 [tool.poetry.dev-dependencies]
 
