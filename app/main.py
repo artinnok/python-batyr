@@ -9,7 +9,10 @@ from tasks import hello_world
 from scheduler import create_schedule
 
 
-app = FastAPI(dependencies=[Depends(get_db)], on_startup=[create_schedule])
+app = FastAPI(
+    dependencies=[Depends(get_db)],
+    on_startup=[create_schedule],
+)
 
 
 @app.post("/persons", response_model=PersonResponseSchema)
