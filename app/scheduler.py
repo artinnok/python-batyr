@@ -11,6 +11,8 @@ def enqueue_task():
     queue.enqueue(hello_world)
 
 
+schedule.every(10).seconds.do(enqueue_task)
+
 if __name__ == "__main__":
     while True:
         schedule.run_pending()
