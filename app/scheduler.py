@@ -1,19 +1,21 @@
-from time import sleep
+from datetime import datetime
 
-import schedule
+from rq_scheduler import Scheduler
 
+from dependencies import get_redis
 from tasks import hello_world
-from dependencies import get_queue
 
 
-def enqueue_task():
-    queue = get_queue()
-    queue.enqueue(hello_world)
+def create_schedule():
+    """
+    создать расписание
+    """
 
+    redis = get_redis()
+    scheduler = Scheduler(connection=redis)
 
-schedule.every(10).seconds.do(enqueue_task)
-
-if __name__ == "__main__":
-    while True:
-        schedule.run_pending()
-        sleep(1)
+    scheduler.schedule(
+        scheduled_time=datetime.utcnow(),
+        func=hello_world,
+        interval=10,
+    )
