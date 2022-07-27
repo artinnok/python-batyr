@@ -1,3 +1,7 @@
+from time import sleep
+
+import schedule
+
 from tasks import hello_world
 from dependencies import get_queue
 
@@ -8,4 +12,6 @@ def enqueue_task():
 
 
 if __name__ == "__main__":
-    enqueue_task()
+    while True:
+        schedule.run_pending()
+        sleep(1)
