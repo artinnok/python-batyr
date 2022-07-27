@@ -6,9 +6,10 @@ from dependencies import get_db, get_queue
 from schemas import PersonRequestSchema, PersonResponseSchema, PersonOptionalRequestSchema
 from models import Person
 from tasks import hello_world
+from beat import create_schedule
 
 
-app = FastAPI(dependencies=[Depends(get_db)])
+app = FastAPI(dependencies=[Depends(get_db)], on_startup=[create_schedule])
 
 
 @app.post("/persons", response_model=PersonResponseSchema)

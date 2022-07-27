@@ -15,7 +15,7 @@ REDIS_URL = environment("REDIS_URL")
 
 def get_db():
     """
-    Соединяется с базой данных
+    соединяется с базой данных
     """
 
     db = PostgresqlDatabase(
@@ -27,12 +27,22 @@ def get_db():
     return db
 
 
+def get_redis():
+    """
+    соединяется с Redis
+    """
+
+    redis = Redis.from_url(url=REDIS_URL)
+
+    return redis
+
+
 def get_queue():
     """
     возвращает очередь задач
     """
 
-    redis = Redis.from_url(url=REDIS_URL)
+    redis = get_redis()
     queue = Queue(connection=redis)
 
     return queue
